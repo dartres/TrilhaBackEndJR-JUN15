@@ -64,3 +64,55 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Requisito
+
+* PHP 8.2 ou superior
+* Composer 
+* Insomnia ou PostMAN
+
+## Como rodar o projeto baixado 
+
+Duplicar o arquivo ".env.example" e renomear para ".env".<br>
+Alterar no arquivo .env as credenciais do banco de dados.<br>
+
+Instalar as dependências do PHP 
+```
+composer install
+```
+
+Gerar a chave no arquivo .env 
+```
+php artisan key:generate
+```
+
+Executar as migrations
+```
+php artisan migrate
+```
+
+Executar jwt
+```
+php artisan jwt:secret
+php artisan key:generate
+```
+
+Para acessar a API, é recomendado utilizar o Insomnia ou PostMAN para simular requisições à API.
+```
+http://127.0.0.1:8000/
+```
+
+## Sequencia para criar o projeto
+
+Criar o projeto
+```
+composer create-project laravel/laravel .
+```
+
+Alterar no arquivo .env as credenciais do banco de dados <br>
+
+Criar o arquivo de rotas para API
+```
+php artisan install:api
+```
