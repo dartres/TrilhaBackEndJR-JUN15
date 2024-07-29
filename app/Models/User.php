@@ -23,10 +23,7 @@ class User extends Authenticatable implements JWTSubject
     protected $fillable = [
         'name',
         'email',
-        'password',
-        'nickname',
-        'responsableEmail',
-        'age'
+        'password'
     ];
 
     protected $table = 'users';
@@ -62,10 +59,8 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function tasks(): BelongsToMany
+    public function tasks()
     {
-        return $this->belongsToMany(Task::class, 'taskUser', 'id_user', 'id_task')
-                    ->withPivot('done', 'blocked', 'finished')
-                    ->withTimestamps();
+        return $this->hasMany(Task::class, 'id_user', 'id');
     }
 }

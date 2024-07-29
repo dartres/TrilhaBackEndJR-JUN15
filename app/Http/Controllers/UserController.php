@@ -39,10 +39,7 @@ class UserController extends Controller
                     'id'            => $user['id'],
                     'name'          => $user['name'],
                     'email'         => $user['email'],
-                    'nickname'     => $user['nickname'],
-                    'responsableEmail'     => $user['responsableEmail'],
-                    'age'           => $user['age'],
-                    'deleted'       => (bool) $user['deleted'],
+                    'deleted'       => (bool) $user['deleted_at'],
                     'created_at'    => $user['created_at'],
                     'updated_at'    => $user['updated_at'],
                     'token'         => $token,
@@ -75,11 +72,8 @@ class UserController extends Controller
             // Validar os dados de entrada
             $validator = Validator::make($request->all(), [
                 'name' => 'string|max:255',
-                'nickname' => 'string|max:255|unique:users,nickname,' . $user->id,
                 'email' => 'string|email|max:255|unique:users,email,' . $user->id,
                 'password' => 'string|min:6|confirmed',
-                'age' => 'numeric',
-                'responsableEmail' => 'string|email|max:255|unique:users,responsableEmail,' . $user->id,
             ]);
 
             if ($validator->fails()) {
@@ -90,31 +84,18 @@ class UserController extends Controller
             if ($request->has('name')) {
                 $userDB->name = $request->input('name');
             }
-            if ($request->has('nickname')) {
-                $userDB->nickname = $request->input('nickname');
-            }
             if ($request->has('email')) {
                 $userDB->email = $request->input('email');
             }
             if ($request->has('password')) {
                 $userDB->password = Hash::make($request->input('password'));
             }
-            if ($request->has('age')) {
-                $userDB->age = $request->input('age');
-            }
-            if ($request->has('responsableEmail')) {
-                $userDB->responsableEmail = $request->input('responsableEmail');
-            }
-
             $userDB->save();
 
             return response()->json(['success' => 'Dados atualizados com sucesso.', 'user' => [
                 "id" => $user->id,
                 "name" => $userDB->name,
-                "nickname" => $userDB->nickname,
                 "email" => $userDB->email,
-                "age" => $userDB->age,
-                "responsableEmail" => $userDB->responsableEmail,
                 "created_at" => $userDB->created_at,
                 "updated_at" => $userDB->updated_at,
             ]], 200);
@@ -161,8 +142,7 @@ class UserController extends Controller
     try {
         $query = User::where(function ($query) use ($value) {
             $query->where('email', 'like', "%$value%")
-                  ->orWhere('id', 'like', "%$value%")
-                  ->orWhere('nickname', 'like', "%$value%");
+                  ->orWhere('id', 'like', "%$value%");
         })
         ->where('deleted_at', null);
 

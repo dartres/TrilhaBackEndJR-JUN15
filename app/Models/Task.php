@@ -11,12 +11,19 @@ class Task extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'task';
+    protected $table = 'tasks';
 
     protected $fillable = [
         'title',
         'content',
-        'id_category'
+        'done',
+        'finished_at',
+        'id_category',
+        'id_user'
+    ];
+
+    protected $casts = [
+        'finished' => 'datetime',
     ];
 
     public function category()
@@ -24,10 +31,8 @@ class Task extends Model
         return $this->belongsTo(Category::class, 'id_category');
     }
 
-    public function users(): BelongsToMany
+    public function users()
     {
-        return $this->belongsToMany(User::class, 'taskUser', 'id_task', 'id_user')
-                    ->withPivot('done', 'blocked', 'finished')
-                    ->withTimestamps();
+         return $this->belongsTo(User::class, 'id_user', 'id');
     }
 }
