@@ -1,3 +1,4 @@
+
 Você pode visualizar toda a documentação dos endpoints em:
 https://documenter.getpostman.com/view/37335643/2sA3kbgyYz
 
@@ -59,3 +60,4 @@ http://127.0.0.1:8000/
 
 ## Você pode visualizar toda a documentação dos endpoints e testá-los em:
 https://documenter.getpostman.com/view/37335643/2sA3kbgyYz
+
