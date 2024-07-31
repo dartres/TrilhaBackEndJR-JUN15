@@ -18,18 +18,12 @@ class Task extends Model
         'content',
         'done',
         'finished_at',
-        'id_category',
         'id_user'
     ];
 
     protected $casts = [
         'finished' => 'datetime',
     ];
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class, 'id_category');
-    }
 
     public function users()
     {

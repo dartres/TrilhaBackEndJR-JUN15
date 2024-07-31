@@ -8,6 +8,6 @@ Route::middleware('jwt.auth')->get('/', [TaskController::class, 'index']);
 Route::middleware('jwt.auth')->post('/create', [TaskController::class, 'store']);
 Route::middleware('jwt.auth')->get('/read/{id}', [TaskController::class, 'show']);
 Route::middleware('jwt.auth')->put('/update/{id}', [TaskController::class, 'update']);
-Route::middleware('jwt.auth')->put('/status', [TaskController::class, 'updateTaskStatus']);
+Route::middleware('jwt.auth')->put('/status/{id}', [TaskController::class, 'updateTaskStatus']);
 Route::middleware('jwt.auth')->delete('/delete/{id}', [TaskController::class, 'destroy']);
-Route::middleware('jwt.auth')->get('/search/{value}', [TaskController::class, 'search']);
+

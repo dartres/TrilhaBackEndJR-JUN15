@@ -20,8 +20,6 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->UnsignedBigInteger('id_category');
-            $table->foreign('id_category')->references('id')->on('category');
             $table->UnsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
             $table->unique(['title', 'content']);

@@ -12,50 +12,6 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request)
-    {
-        //
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()->first()], 400);
-        }
-        try {
-            $user = User::where('email', $request->email)->first();
-            if (!$user) {
-                return response()->json(['error' => 'Erro, algum dado errado.'], 400);
-            }
-            if ($user->deleted) {
-                return response()->json(['error' => 'Conta deletada.'], 400);
-            }
-
-            if (Hash::check($request->password, $user->password)) {
-                $token = JWTAuth::fromUser($user);
-                $data = [
-                    'id'            => $user['id'],
-                    'name'          => $user['name'],
-                    'email'         => $user['email'],
-                    'deleted'       => (bool) $user['deleted_at'],
-                    'created_at'    => $user['created_at'],
-                    'updated_at'    => $user['updated_at'],
-                    'token'         => $token,
-                    'token_type'    => 'bearer',
-                    'success'       => 'Usuário autenticado'
-                ];
-                return response()->json($data, 200);
-            } else {
-                return response()->json(['error' => 'Erro, algum dado errado.'], 400);
-            }
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request)
@@ -68,8 +24,6 @@ class UserController extends Controller
         }
 
         try {
-
-            // Validar os dados de entrada
             $validator = Validator::make($request->all(), [
                 'name' => 'string|max:255',
                 'email' => 'string|email|max:255|unique:users,email,' . $user->id,
@@ -80,7 +34,6 @@ class UserController extends Controller
                 return response()->json(['error' => $validator->errors()], 400);
             }
 
-            // Atualizar os dados do usuário
             if ($request->has('name')) {
                 $userDB->name = $request->input('name');
             }
