@@ -1,4 +1,5 @@
 import { openDb } from '../../src/database/configDB.js';
+import bcrypt from 'bcrypt';
 
 async function createTableUsers() {
     try {
