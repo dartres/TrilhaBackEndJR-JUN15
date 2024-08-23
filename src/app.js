@@ -6,7 +6,13 @@ const app = express();
 app.use(express.json());
 
 import cors from 'cors';
-app.use(cors());
+
+const corsOptions = {
+  origin: 'https://trilhabackendjr-jun15-d69l.onrender.com', 
+  allowedHeaders: 'Content-Type,Authorization',
+};
+
+app.use(cors(corsOptions));
 
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../swagger-output.json' assert { type: 'json' }; 
