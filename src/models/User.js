@@ -9,6 +9,11 @@ const UserModel = {
             [name, email, password]
         );
         return result;
+    },   
+     async findByEmail(email) {
+        const db = await openDb();
+        const user = await db.get('SELECT * FROM users WHERE email = ?', [email]);
+        return user;
     },
     async list() {
         const db = await openDb();
@@ -36,4 +41,4 @@ const UserModel = {
     }
 };
 
-export default UserModel;
+export {UserModel};
