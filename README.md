@@ -97,3 +97,6 @@ Achou esse projeto inicial simples? Eleve ainda mais! Estamos em busca de mentes
 Está com alguma dificuldade, encontrou algum problema no desafio ou tem alguma sugestão pra gente? Crie uma issue e descreva o que achar necessário.
 
 **Construindo o amanhã, hoje.**
+
+
+
