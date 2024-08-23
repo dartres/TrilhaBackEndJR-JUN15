@@ -20,13 +20,9 @@ const TaskModel = {
         const task = await db.get('SELECT * FROM tasks WHERE id = ?', [id]);
         return task;
     },
-    async update(id, task) {
+    async update(query, values) {
         const db = await openDb();
-        const { title, content, done } = task;
-        const result = await db.run(
-            `UPDATE tasks SET title = ?, content = ?, done = ? WHERE id = ?`,
-            [title, content, done, id]
-        );
+        const result = await db.run(query, values);
         return result;
     },
     async delete(id) {
@@ -36,7 +32,4 @@ const TaskModel = {
     }
 };
 
-export default TaskModel;
-
-
-export { createTableTasks };
+export { TaskModel };
