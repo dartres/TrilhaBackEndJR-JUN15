@@ -5,10 +5,10 @@
     "description": "API para gerenciamento de tarefas e usuários",
     "version": "1.0.0"
   },
-  "host": "https://trilhabackendjr-jun15-d69l.onrender.com",
+  "host": "trilhabackendjr-jun15-d69l.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/users/register": {
