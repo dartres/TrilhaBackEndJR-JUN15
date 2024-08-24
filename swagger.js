@@ -6,7 +6,6 @@ const doc = {
     description: 'API para gerenciamento de tarefas e usuários',
   },
   host: 'https://trilhabackendjr-jun15-d69l.onrender.com',
-  schemes: ['http'],
 };
 
 const outputFile = './swagger-output.json'; 
