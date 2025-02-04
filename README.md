@@ -1,4 +1,4 @@
-## Documentação e Deploy
+## Documentação e Deploy (pode levar alguns minutos para inicializar)
 ```
 https://trilhabackendjr-jun15-d69l.onrender.com/api-docs
 ```
