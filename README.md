@@ -1,9 +1,4 @@
-## Deploy
-```
-https://trilhabackendjr-jun15-d69l.onrender.com
-```
-
-## Documentação
+## Documentação e Deploy
 ```
 https://trilhabackendjr-jun15-d69l.onrender.com/api-docs
 ```
